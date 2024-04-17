@@ -1,5 +1,6 @@
+import { Link } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 import { Text, View } from 'react-native'
-import React from 'react'
 
 const index = () => {
   return (
@@ -7,6 +8,8 @@ const index = () => {
         <Text className="text-3xl">
           Hello 
         </Text>
+        <StatusBar style="auto"/>
+        <Link href="/home">Home</Link>
       </View>
   )
 }
