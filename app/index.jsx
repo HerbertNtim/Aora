@@ -14,7 +14,7 @@ const index = () => {
           height: "100%",
         }}
       >
-        <View className="flex justify-center items-center px-4 w-full h-full">
+        <View className="flex justify-center items-center px-4 w-full min-h-[85vh]">
 
           {/* LOGO */}
           <Image 
