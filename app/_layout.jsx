@@ -24,10 +24,10 @@ const RootLayout = () => {
     }
 
     if(fontsLoaded){
-      return SplashScreen.hideAsync()
+      SplashScreen.hideAsync()
     }
 
-  }, [fontsLoaded]);
+  }, [fontsLoaded, error]);
 
   if(!fontsLoaded && !error){
     return null
