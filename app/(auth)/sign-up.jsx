@@ -1,11 +1,12 @@
-import { Image, ScrollView, Text, View } from 'react-native'
+import { Alert, Image, ScrollView, Text, View } from 'react-native'
 import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { images } from '../../constants'
 import FormField from '../components/FormField'
 import CustomButton from '../components/CustomButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
+import { createUser } from '../../lib/appwrite'
 
 const SignUp = () => {
   const [isSubmitting, setSubmitting] = useState(false)
@@ -16,7 +17,24 @@ const SignUp = () => {
   });
 
   // Submitting form 
-  const submit = () => {
+  const submit = async () => {
+    if(!form.email || !form.password || !form.username) {
+      Alert.alert("Error", "Please fill all fields")
+    }
+
+    setSubmitting(true)
+    try {
+      const result = await createUser(form.username, form.email, form.password)
+      Alert.alert("Success", "Account created successfully")
+      
+      if(result) {
+        router.replace('/home')
+      }
+    } catch (error) {
+      Alert.alert("Error", error.message)
+    } finally{
+      setSubmitting(false)
+    }
 
   }
 
@@ -34,7 +52,7 @@ const SignUp = () => {
           <FormField
             title="Username"
             value={form.username}
-            handleChangeText={(e) => setForm({ ...form, email: e })}
+            handleChangeText={(e) => setForm({ ...form, username: e })}
             otherStyles="mt-7"
             keyboardType="email-address"
           />
@@ -55,7 +73,7 @@ const SignUp = () => {
           />
 
           <CustomButton
-            title="Sign In"
+            title="Sign Up"
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}

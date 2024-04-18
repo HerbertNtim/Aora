@@ -16,13 +16,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package": "com.hntim.aora"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#161622"
-      }
+      },
+      "package": "com.hntim.aora"
     },
     "web": {
       "favicon": "./assets/favicon.ico"
