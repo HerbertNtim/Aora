@@ -1,6 +1,7 @@
 import { SplashScreen, Stack } from "expo-router"
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
+import GlobalProvider from "../context/GlobalProvider";
 
 // Keep the splash screen visible while the app resources are loading
 SplashScreen.preventAutoHideAsync();
@@ -34,7 +35,7 @@ const RootLayout = () => {
   }
 
   return (
-    <>
+    <GlobalProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} /> 
 
@@ -52,7 +53,7 @@ const RootLayout = () => {
           }}
         />
       </Stack>
-    </>
+    </GlobalProvider>
   )
 }
 
