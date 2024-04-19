@@ -1,11 +1,15 @@
-import { FlatList, Image, Text, View } from 'react-native'
+import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { images } from '../../constants'
 import SearchInput from '../components/SearchInput'
 import Trending from '../components/Trending'
+import EmptyState from '../components/EmptyState'
+import { useState } from 'react'
 
 const Home = () => {
+  const [refreshing, setRefreshing] = useState(false)
+
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList 
@@ -39,7 +43,7 @@ const Home = () => {
             <SearchInput />
 
             {/* Trending Video */}
-            <View className="w-full flex-1 pt-5 pb-8"> 
+            <View className="w-full flex-1 pt-2"> 
               <Text className="text-lg font-pregular text-gray-100 mb-3">
                 Latest Videos
               </Text>
@@ -48,6 +52,17 @@ const Home = () => {
             </View>
           </View>
         )}
+
+        // EMPTY LISTS
+        ListEmptyComponent={() => (
+          <EmptyState
+            title="No Videos Found"
+            subtitle="Be the first to upload a video"
+          />
+        )}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={''} />
+        }
       />
 
       <StatusBar backgroundColor="#161622" style="light" />

@@ -14,6 +14,8 @@
     "Pressable",
     "psemibold",
     "pthin",
-    "tailwindcss"
+    "tailwindcss",
+    "USERCOLLECTION",
+    "VIDEOCOLLECTION"
   ]
 }

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Trending = ({ posts }) => {
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="">
       <FlatList 
         data={posts}
         keyExtractor={() => {}} 

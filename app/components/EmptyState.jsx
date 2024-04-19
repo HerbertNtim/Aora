@@ -6,7 +6,7 @@ import CustomButton from "./CustomButton";
 
 const EmptyState = ({ title, subtitle }) => {
   return (
-    <View className="flex justify-center items-center px-4">
+    <View className="flex justify-center items-center px-4 my-0">
       <Image
         source={images.empty}
         resizeMode="contain"
@@ -19,8 +19,8 @@ const EmptyState = ({ title, subtitle }) => {
       </Text>
 
       <CustomButton
-        title="Back to Explore"
-        handlePress={() => router.push("/home")}
+        title="Create a video now"
+        handlePress={() => router.push("/create")}
         containerStyles="w-full my-5"
       />
     </View>
