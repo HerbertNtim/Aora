@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { icons } from '../../constants'
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useState } from 'react'
+import { icons } from '../constants'
+
 
 const FormField = ({
   title,
@@ -42,5 +43,3 @@ const FormField = ({
 }
 
 export default FormField
-
-const styles = StyleSheet.create({})

@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar'
 import { Image, ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { images } from '../constants'
-import CustomButton from './components/CustomButton'
+import CustomButton from '../components/CustomButton'
 import { Redirect, router } from 'expo-router'
 import { useGlobalContext } from '../context/GlobalProvider'
+import { images } from '../constants'
 
 const index = () => {
   const { loading, isLogged } = useGlobalContext()

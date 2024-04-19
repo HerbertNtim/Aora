@@ -1,6 +1,5 @@
 import { Image, TextInput, TouchableOpacity, View } from 'react-native'
-import { icons } from '../../constants'
-
+import { icons } from '../constants'
 
 const SearchInput = () => {
   return (

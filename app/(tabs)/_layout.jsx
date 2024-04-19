@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import { icons } from '../../constants'
 import { Image } from 'react-native'
+import { icons } from '../../constants'
 
 // Creating the TabIcon here
 const TabIcon = ({ icon, color, name, focused }) => {

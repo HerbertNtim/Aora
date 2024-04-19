@@ -1,21 +1,45 @@
-import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
+import { Alert, FlatList, Image, RefreshControl, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { images } from '../../constants'
-import SearchInput from '../components/SearchInput'
-import Trending from '../components/Trending'
-import EmptyState from '../components/EmptyState'
+import SearchInput from '../../components/SearchInput'
+import Trending from '../../components/Trending'
+import EmptyState from '../../components/EmptyState'
 import { useState } from 'react'
+import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
+import useAppwrite from '../../lib/useAppwrite'
+import VideoCard from '../../components/VideoCard'
 
 const Home = () => {
+  // fetching all posts using the useAppwrite hook
+  const { data: posts, refetch } = useAppwrite(getAllPosts)
+  const { data: latestPosts} = useAppwrite(getLatestPosts)
+
   const [refreshing, setRefreshing] = useState(false)
+
+  // Fetching new videos
+  const onRefresh = async () => {
+    setRefreshing(true)
+    // recall videos -> if any new videos are added
+    await refetch()
+
+    setRefreshing(false)
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList 
-        data={[]}
-        renderItem={() => {}}
-        keyExtractor={() => {}}      
+        data={posts}
+        keyExtractor={(item) => item.$id}      
+        renderItem={({item}) => (
+          <VideoCard 
+            title={item.title}
+            creator={item.creator.username}
+            avatar={item.creator.avatar}
+            thumbnail={item.thumbnail}
+            video={item.video}
+          />
+        )}
         
         // Header title
         ListHeaderComponent={() => (
@@ -48,7 +72,7 @@ const Home = () => {
                 Latest Videos Here
               </Text>
 
-              <Trending posts={[]} />
+              <Trending posts={latestPosts ?? []} />
             </View>
           </View>
         )}
@@ -61,7 +85,7 @@ const Home = () => {
           />
         )}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={''} />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
 
