@@ -45,7 +45,7 @@ const Home = () => {
             {/* Trending Video */}
             <View className="w-full flex-1 pt-2"> 
               <Text className="text-lg font-pregular text-gray-100 mb-3">
-                Latest Videos
+                Latest Videos Here
               </Text>
 
               <Trending posts={[]} />
