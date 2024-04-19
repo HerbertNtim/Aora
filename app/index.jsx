@@ -35,7 +35,7 @@ const index = () => {
             resizeMode='contain'
           />
 
-          {/* TEST */}
+          {/* TExT */}
           <View className='relative mt-5'>
             <Text className="text-3xl text-white font-pbold text-center">
               Unlock Endless Possibilities with{" "} <Text className="text-secondary-200">Aora</Text>
