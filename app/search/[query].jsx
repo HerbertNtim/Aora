@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchInput from '../../components/SearchInput';
 import EmptyState from '../../components/EmptyState';
 import { searchPosts } from '../../lib/appwrite';
+import VideoCard from '../../components/VideoCard';
 
 const Search = () => {
   const { query } = useLocalSearchParams();
@@ -15,7 +16,6 @@ const Search = () => {
     refetch();
   }, [query]);
 
-  console.log(query, posts)
 
   return (
     <SafeAreaView className="bg-primary h-full">
