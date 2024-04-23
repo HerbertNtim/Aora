@@ -12,7 +12,7 @@ import VideoCard from '../../components/VideoCard'
 import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
-  const { user, isLogged } = useGlobalContext()
+  const { user } = useGlobalContext()
 
   // fetching all posts using the useAppwrite hook
   const { data: posts, refetch } = useAppwrite(getAllPosts)
