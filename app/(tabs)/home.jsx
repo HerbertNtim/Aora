@@ -13,7 +13,6 @@ import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
   const { user } = useGlobalContext()
-
   // fetching all posts using the useAppwrite hook
   const { data: posts, refetch } = useAppwrite(getAllPosts)
   const { data: latestPosts} = useAppwrite(getLatestPosts)
@@ -37,11 +36,7 @@ const Home = () => {
         keyExtractor={(item) => item.$id}      
         renderItem={({item}) => (
           <VideoCard 
-            title={item.title}
-            creator={item.creator.username}
-            avatar={item.creator.avatar}
-            thumbnail={item.thumbnail}
-            video={item.video}
+            video={item}
           />
         )}
         

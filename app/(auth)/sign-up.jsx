@@ -28,12 +28,13 @@ const SignUp = () => {
     setSubmitting(true)
     try {
       const result = await createUser(form.username, form.email, form.password)
-      Alert.alert("Success", "Account created successfully")
-
       setUser(result)
       setIsLogged(true)
       
       if(result) {
+        setTimeout(() => {
+          Alert.alert("Success", "Account created successfully")
+        }, 100)
         router.replace('/home')
       }
     } catch (error) {

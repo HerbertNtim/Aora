@@ -26,7 +26,9 @@ const SignIn = () => {
     setSubmitting(true)
     try {
       await signIn(form.email, form.password)
-      Alert.alert("Success", "Logged in successfully")
+      setTimeout(() => {
+        Alert.alert("Success", "Logged In Successfully")
+      }, 100)
 
       const result = await getCurrentUser()
 

@@ -2,13 +2,14 @@ import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-na
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useState } from 'react'
 import { ResizeMode, Video } from 'expo-av'
-import * as ImagePicker from 'expo-image-picker'
+import * as DocumentPicker from 'expo-document-picker';
 
 import { icons } from '../../constants'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 import { createVideoPost } from '../../lib/appwrite'
 import { useGlobalContext } from '../../context/GlobalProvider'
+import { router } from 'expo-router';
 
 const Create = () => {
   const { user } = useGlobalContext()
@@ -24,29 +25,32 @@ const Create = () => {
 
   // Uploading logic
   const openPicker = async (selectType) => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: selectType === 'image' ? ImagePicker.MediaTypeOptions.Images : ImagePicker.MediaTypeOptions.Videos,
-      aspect: [4, 3],
-      quality: 1,
+    const result = await DocumentPicker.getDocumentAsync({
+      type:
+        selectType === "image"
+          ? ["image/png", "image/jpg", "image/jpeg"]
+          : ["video/mp4", "video/gif"],
     });
 
-    if(!result.canceled){
-      // uploading thumbnail
-      if(selectType === 'image'){
+    if (!result.canceled) {
+      if (selectType === "image") {
         setForm({
-          ...form, 
-          thumbnail: result.assets[0]
-        })
+          ...form,
+          thumbnail: result.assets[0],
+        });
       }
 
-      // Uploading Videos
-      if(selectType === 'video'){
+      if (selectType === "video") {
         setForm({
-          ...form, 
-          video: result.assets[0]
-        })
+          ...form,
+          video: result.assets[0],
+        });
       }
-    } 
+    } else {
+      setTimeout(() => {
+        Alert.alert("Document picked", JSON.stringify(result, null, 2));
+      }, 100);
+    }
   }
 
   // Submitting 
