@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ResizeMode, Video } from "expo-av";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Modal } from "react-native";
 
 import { icons } from "../constants";
 
@@ -35,7 +35,7 @@ const VideoCard = ({ title, creator, avatar, thumbnail, video }) => {
           </View>
         </View>
 
-        <View className="pt-2">
+        <View>
           <Image source={icons.menu} className="w-5 h-5" resizeMode="contain" />
         </View>
       </View>

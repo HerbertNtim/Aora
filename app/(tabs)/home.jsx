@@ -1,4 +1,4 @@
-import { Alert, FlatList, Image, RefreshControl, Text, View } from 'react-native'
+import { FlatList, Image, RefreshControl, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { images } from '../../constants'
@@ -36,7 +36,11 @@ const Home = () => {
         keyExtractor={(item) => item.$id}      
         renderItem={({item}) => (
           <VideoCard 
-            video={item}
+            video={item.video}
+            title={item.title}
+            creator={item.creator.username}
+            avatar={item.creator.avatar}
+            thumbnail={item.thumbnail}
           />
         )}
         
